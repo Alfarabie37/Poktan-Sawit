@@ -41,12 +41,11 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+            <li class="nav-item">
+    <a class="nav-link" href="{{ route('dashboard') }}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+</li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -65,10 +64,10 @@
 
             <!-- Nav Item - Data Lahan -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-map-marked-alt"></i>
-                    <span>Data Lahan Sawit</span></a>
-            </li>
+    <a class="nav-link" href="{{ route('lahan.index') }}">
+        <i class="fas fa-fw fa-map-marked-alt"></i>
+        <span>Data Lahan Sawit</span></a>
+</li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -80,17 +79,17 @@
 
             <!-- Nav Item - Hasil Panen -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-balance-scale"></i>
-                    <span>Hasil Panen (TBS)</span></a>
-            </li>
+    <a class="nav-link" href="{{ route('panen.index') }}">
+        <i class="fas fa-fw fa-balance-scale"></i>
+        <span>Hasil Panen (TBS)</span></a>
+</li>
 
             <!-- Nav Item - Distribusi Pupuk -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-boxes"></i>
-                    <span>Distribusi Pupuk</span></a>
-            </li>
+    <a class="nav-link" href="{{ route('pupuk.index') }}">
+        <i class="fas fa-fw fa-boxes"></i>
+        <span>Distribusi Pupuk</span></a>
+</li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -192,7 +191,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin Poktan</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('template/img/undraw_profile.svg') }}">
                             </a>
@@ -261,9 +260,12 @@
                 </div>
                 <div class="modal-body">Pilih "Keluar" di bawah ini jika Anda siap mengakhiri sesi saat ini.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-success" href="#">Keluar</a>
-                </div>
+    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" class="btn btn-danger">Keluar</button>
+    </form>
+</div>
             </div>
         </div>
     </div>

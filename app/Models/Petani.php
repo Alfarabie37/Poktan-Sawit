@@ -16,4 +16,14 @@ class Petani extends Model
         'alamat',
         'luas_lahan',
     ];
+
+    public function lahans()
+    {
+        return $this->hasMany(Lahan::class);
+    }
+
+    public function pupuks()
+    {
+        return $this->hasMany(Pupuk::class);
+    }
 }
