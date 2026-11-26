@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Petani;
 
 class Pupuk extends Model
 {
@@ -15,8 +16,7 @@ class Pupuk extends Model
         'jenis_pupuk',
         'kategori',
         'jumlah_sak',
-        'berat_total_kg',
-        'keterangan',
+        'total_berat_kg',
     ];
 
     public function petani()

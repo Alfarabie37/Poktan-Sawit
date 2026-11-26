@@ -1,285 +1,292 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Sistem Informasi Kelompok Tani Sawit">
-    <meta name="author" content="Poktan-Sawit">
+    <title>@yield('title', 'PoktanSawit')</title>
 
-    <title>@yield('title', 'Poktan-Sawit')</title>
-
-    <!-- Custom fonts for this template-->
     <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F6F8F7;
+            color: #1E293B;
+        }
+        /* Modern White Sidebar */
+        .modern-sidebar {
+            width: 260px;
+            min-height: 100vh;
+            background: #FFFFFF;
+            border-right: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        .sidebar-header {
+            padding: 22px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: #1B5E3A;
+            color: #FFFFFF;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .sidebar-menu {
+            padding: 16px 14px;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .menu-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #94A3B8;
+            padding: 12px 12px 6px;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 9px;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none !important;
+            margin-bottom: 4px;
+            transition: all 0.15s ease;
+        }
+        .menu-item i {
+            width: 18px;
+            text-align: center;
+            font-size: 15px;
+            color: #64748B;
+        }
+        .menu-item:hover {
+            background: #F1F5F9;
+            color: #1B5E3A;
+        }
+        .menu-item:hover i {
+            color: #1B5E3A;
+        }
+        .menu-item.active {
+            background: #E8F3EE;
+            color: #1B5E3A;
+            font-weight: 600;
+        }
+        .menu-item.active i {
+            color: #1B5E3A;
+        }
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid #F1F5F9;
+            background: #FAFCFB;
+        }
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #1B5E3A;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        /* Main Content Area */
+        .main-area {
+            margin-left: 260px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-header {
+            background: #FFFFFF;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 14px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content-body {
+            padding: 28px 32px;
+            flex: 1;
+        }
+        .card-modern {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+        .btn-poktan {
+            background-color: #1B5E3A;
+            color: #FFFFFF;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13.5px;
+            padding: 8px 16px;
+            border: none;
+        }
+        .btn-poktan:hover {
+            background-color: #14472C;
+            color: #FFFFFF;
+        }
+        @media (max-width: 991px) {
+            .modern-sidebar { position: relative; width: 100%; min-height: auto; }
+            .main-area { margin-left: 0; }
+        }
+    </style>
+    @stack('styles')
 </head>
+<body>
 
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-seedling"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Poktan <sup>Sawit</sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <li class="nav-item">
-    <a class="nav-link" href="{{ route('dashboard') }}">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
-</li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Data Master
+    <!-- Sidebar Putih Modern -->
+    <aside class="modern-sidebar">
+        <div class="sidebar-header">
+            <div class="brand-logo">P</div>
+            <div>
+                <div class="font-weight-bold text-dark" style="font-size: 17px; line-height: 1.2;">PoktanSawit</div>
+                <small class="text-muted" style="font-size: 11px;">
+                    {{ Auth::user()->role === 'super_admin' ? 'Panel Super Admin' : (Auth::user()->kelompokTani->nama_kelompok ?? 'Kelompok Tani') }}
+                </small>
             </div>
+        </div>
 
-            <!-- Nav Item - Data Petani -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('petani.index') }}">
-                <i class="fas fa-fw fa-users"></i>
-                <span>Data Petani</span></a>
-            </li>
+        <nav class="sidebar-menu">
+            @if(Auth::user()->role === 'super_admin')
+                <!-- MENU KHUSUS SUPER ADMIN -->
+                <div class="menu-label">Administrasi Pusat</div>
+                <a href="{{ route('admin.dashboard') }}" class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard Nasional</span>
+                </a>
+                <a href="{{ route('admin.verifikasi') }}" class="menu-item {{ request()->routeIs('admin.verifikasi*') ? 'active' : '' }}">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Verifikasi Poktan</span>
+                </a>
+                <a href="{{ route('admin.kelompok') }}" class="menu-item {{ request()->routeIs('admin.kelompok*') ? 'active' : '' }}">
+                    <i class="fas fa-building"></i>
+                    <span>Semua Kelompok Tani</span>
+                </a>
+                <a href="{{ route('admin.pengguna') }}" class="menu-item {{ request()->routeIs('admin.pengguna*') ? 'active' : '' }}">
+                    <i class="fas fa-user-cog"></i>
+                    <span>Kelola Pengguna</span>
+                </a>
+                <a href="{{ route('admin.laporan') }}" class="menu-item {{ request()->routeIs('admin.laporan*') ? 'active' : '' }}">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Laporan Global</span>
+                </a>
+            @else
+                <!-- MENU KHUSUS PENGGUNA (PENGURUS POKTAN) -->
+                <div class="menu-label">Menu Utama</div>
+                <a href="{{ route('dashboard') }}" class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </a>
 
-            <!-- Nav Item - Data Lahan -->
-            <li class="nav-item">
-    <a class="nav-link" href="{{ route('lahan.index') }}">
-        <i class="fas fa-fw fa-map-marked-alt"></i>
-        <span>Data Lahan Sawit</span></a>
-</li>
+                <div class="menu-label">Data Master</div>
+                <a href="{{ route('petani.index') }}" class="menu-item {{ request()->routeIs('petani.*') ? 'active' : '' }}">
+                    <i class="fas fa-users"></i>
+                    <span>Data Petani</span>
+                </a>
+                <a href="{{ route('lahan.index') }}" class="menu-item {{ request()->routeIs('lahan.*') ? 'active' : '' }}">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Data Lahan Sawit</span>
+                </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+                <div class="menu-label">Operasional & Laporan</div>
+                <a href="{{ route('panen.index') }}" class="menu-item {{ request()->routeIs('panen.*') ? 'active' : '' }}">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Hasil Panen (TBS)</span>
+                </a>
+                <a href="{{ route('pupuk.index') }}" class="menu-item {{ request()->routeIs('pupuk.*') ? 'active' : '' }}">
+                    <i class="fas fa-boxes"></i>
+                    <span>Distribusi Pupuk</span>
+                </a>
+                <a href="{{ route('laporan.index') }}" class="menu-item {{ request()->routeIs('laporan.*') ? 'active' : '' }}">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Laporan Poktan</span>
+                </a>
+            @endif
+        </nav>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Transaksi & Laporan
-            </div>
-
-            <!-- Nav Item - Hasil Panen -->
-            <li class="nav-item">
-    <a class="nav-link" href="{{ route('panen.index') }}">
-        <i class="fas fa-fw fa-balance-scale"></i>
-        <span>Hasil Panen (TBS)</span></a>
-</li>
-
-            <!-- Nav Item - Distribusi Pupuk -->
-            <li class="nav-item">
-    <a class="nav-link" href="{{ route('pupuk.index') }}">
-        <i class="fas fa-fw fa-boxes"></i>
-        <span>Distribusi Pupuk</span></a>
-</li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Cari data petani / lahan..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-success" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
+        <!-- Profil & Tombol Keluar di Kiri Bawah -->
+        <div class="sidebar-footer">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center" style="gap: 10px; min-width: 0;">
+                    <div class="user-avatar">
+                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                    </div>
+                    <div style="min-width: 0;">
+                        <div class="font-weight-bold text-dark text-truncate" style="font-size: 13px;">{{ Auth::user()->name }}</div>
+                        <div class="text-muted text-truncate" style="font-size: 11px;">
+                            {{ Auth::user()->role === 'super_admin' ? 'Super Admin' : 'Pengurus Kelompok' }}
                         </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Cari data..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-success" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">1</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header bg-success border-success">
-                                    Notifikasi Sistem
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-check text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">Hari ini</div>
-                                        <span class="font-weight-bold">Selamat datang di Sistem Informasi Poktan-Sawit!</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{ asset('template/img/undraw_profile.svg') }}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profil
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Keluar
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    @yield('content')
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Poktan-Sawit 2026</span>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Yakin ingin keluar?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-light text-danger" title="Keluar" style="border-radius: 8px;">
+                        <i class="fas fa-sign-out-alt"></i>
                     </button>
-                </div>
-                <div class="modal-body">Pilih "Keluar" di bawah ini jika Anda siap mengakhiri sesi saat ini.</div>
-                <div class="modal-footer">
-    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-        @csrf
-        <button type="submit" class="btn btn-danger">Keluar</button>
-    </form>
-</div>
+                </form>
             </div>
         </div>
+    </aside>
+
+    <!-- Area Konten Kanan -->
+    <div class="main-area">
+        <header class="top-header">
+            <div>
+                <span class="text-muted small">
+                    {{ Auth::user()->role === 'super_admin' ? 'Sistem Manajemen Terpusat PoktanSawit' : (Auth::user()->kelompokTani->nama_kelompok ?? 'Kelompok Tani Sawit') . ' • Desa ' . (Auth::user()->kelompokTani->desa ?? '-') }}
+                </span>
+            </div>
+            <div class="d-flex align-items-center" style="gap: 12px;">
+                <span class="badge px-3 py-2" style="background: #E8F3EE; color: #1B5E3A; border-radius: 20px; font-weight: 600;">
+                    <i class="fas fa-circle mr-1" style="font-size: 8px;"></i>
+                    {{ Auth::user()->role === 'super_admin' ? 'Super Admin Aktif' : 'Status: Aktif' }}
+                </span>
+            </div>
+        </header>
+
+        <main class="content-body">
+            @if(session('success'))
+                <div class="alert alert-success border-0 shadow-sm mb-4" style="border-radius: 10px;">
+                    <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
+                </div>
+            @endif
+            @if($errors->any())
+                <div class="alert alert-danger border-0 shadow-sm mb-4" style="border-radius: 10px;">
+                    <i class="fas fa-exclamation-circle mr-2"></i> {{ $errors->first() }}
+                </div>
+            @endif
+
+            @yield('content')
+        </main>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
-
+    @stack('scripts')
 </body>
-
 </html>

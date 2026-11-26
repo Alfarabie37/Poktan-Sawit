@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Petani;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PetaniController extends Controller
 {

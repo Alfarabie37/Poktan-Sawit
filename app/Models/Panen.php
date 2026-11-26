@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Lahan;
 
 class Panen extends Model
 {
@@ -15,7 +16,7 @@ class Panen extends Model
         'berat_kg',
         'harga_per_kg',
         'total_pendapatan',
-        'keterangan',
+        'catatan',
     ];
 
     public function lahan()
